@@ -19,6 +19,20 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+## Bring your own raw data
+
+The repo ignores bulky upstream datasets. Collaborators must download the sources below and drop them into the indicated folders before running any pipelines:
+
+| Dataset | Description | Download link | Expected location |
+| --- | --- | --- | --- |
+| Climate TRACE emissions (v4.8.0) | Country-level sector GHG emissions | https://climatetrace.org/downloads | `DataSources/Emmissions/Climattrace/` (preserve the `DATA/` tree) |
+| EDGAR v8.0 GHG by substance (GWP100, AR5) | NUTS2 emissions by gas & sector | https://edgar.jrc.ec.europa.eu/dataset_ghg80 | `DataSources/Emmissions/EDGARv8.0_GHG_by substance_GWP100_AR5_NUTS2_1990_2022.xlsx` |
+| Eurostat `hlth_cd_asdr2` | Age-standardised death rates | https://ec.europa.eu/eurostat/api/discover/datasets/hlth_cd_asdr2 | `DataSources/Diseases/hlth_cd_asdr2.tsv` |
+| Eurostat `hlth_co_disch1t` | Hospital discharges by diagnosis | https://ec.europa.eu/eurostat/api/discover/datasets/hlth_co_disch1t | `DataSources/Diseases/hlth_co_disch1t.tsv` |
+| NUTS 2021 GeoJSON (20 m, EPSG:4326) | Regional boundaries for the map | https://gisco-services.ec.europa.eu/distribution/v2/nuts/ | `data/raw/geo/NUTS_RG_20M_2021_4326.geojson` |
+
+> Eurostat tip: pick the “TSV (raw)” option so the ingestion scripts can stream the files without additional conversions.
+
 ## Rebuild the datasets
 
 Run the CLI modules (or execute the companion notebooks) from the project root:
@@ -42,7 +56,7 @@ The harmonization step automatically downloads the latest Eurostat NUTS2 populat
 streamlit run app/main.py
 ```
 
-Use the sidebar filters to focus on specific countries or regions, switch between emission/health metrics for the choropleth, and review sector or hospital-discharge breakouts.
+If Streamlit complains about missing parquet files, revisit the “Bring your own raw data” section and rerun the ingestion + harmonization steps. Use the sidebar filters to focus on specific countries or regions, switch between emission/health metrics for the choropleth, and review sector or hospital-discharge breakouts.
 
 ## Testing & QA
 
