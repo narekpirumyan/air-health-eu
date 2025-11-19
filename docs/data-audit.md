@@ -9,7 +9,7 @@
 ## 2. Emissions Data Sources
 
 ### 2.1 EDGAR v8.0 GHG (NUTS2)
-- **Location:** DataSources/Emmissions/EDGARv8.0_GHG_by substance_GWP100_AR5_NUTS2_1990_2022.xlsx
+- **Location:** data/raw/emissions/EDGARv8.0_GHG_by substance_GWP100_AR5_NUTS2_1990_2022.xlsx
 - **Sheets:** Fossil CO2 AR5, CH4_AR5, N2O_AR5, F-gas AR5 (+ info).
 - **Granularity:** NUTS2 x Sector x Gas, annual 1990–2022, units = kt CO₂-eq (AR5 GWP100).
 - **Schema (after skipping first 5 metadata rows):** Substance, ISO, Country, NUTS 2, NUTS 2 desc, Sector, Y_1990 ... Y_2022.
@@ -20,7 +20,7 @@
   - Filter to EU27 + EFTA as needed; confirm small territories present.
 
 ### 2.2 Climate TRACE Facility-Level Emissions
-- **Location:** DataSources/Emmissions/Climattrace/
+- **Location:** data/raw/emissions/Climattrace/
   - Schema file: ABOUT_THE_DATA/detailed_data_schema_v4_8_0.csv (47 columns describing metadata such as sector, subsector, source_id, lat, lon, gas, emissions_quantity).
   - Sector folders under DATA/ (agriculture, power, transportation, etc.) contain country-level emissions + confidence tables.
 - **Usage intent:** enrich dashboard with point sources / sector deep dives (e.g., specific plants or operations) or cross-check EDGAR totals.
@@ -29,7 +29,7 @@
 ## 3. Health Data Sources (Eurostat)
 
 ### 3.1 Causes of Death – Respiratory (hlth_cd_asdr2)
-- **Location:** DataSources/Diseases/hlth_cd_asdr2.tsv
+- **Location:** data/raw/health/hlth_cd_asdr2.tsv
 - **Fields (wide format):** freq, unit, sex, age, icd10, geo\TIME_PERIOD, 2011 ... 2022.
 - **Content:** Age-standardised death rates per 100k for ICD10 respiratory groupings (e.g., A-R_V-Y).
 - **Transform needs:**
@@ -39,7 +39,7 @@
   - Validate geographic coverage (dataset includes AT, AT1, AT11, etc.); confirm all EU NUTS2 present.
 
 ### 3.2 Hospital Discharges – Respiratory (hlth_co_disch1t)
-- **Location:** DataSources/Diseases/hlth_co_disch1t.tsv
+- **Location:** data/raw/health/hlth_co_disch1t.tsv
 - **Fields:** freq, age, indic_he, unit, sex, icd10, geo\TIME_PERIOD, 2000 ... 2021.
 - **Content:** Number of in-patient discharges by diagnosis (ICD10). Values currently : for many rows; first non-null entries observed around 2015 for Austrian regions.
 - **Transform needs:** similar pivot as above, convert counts to per-100k if population available, map indicator codes (e.g., INPAT, NR), filter respiratory ICD10 groups.

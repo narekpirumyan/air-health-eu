@@ -150,7 +150,7 @@ def _parse_args():
     parser.add_argument(
         "--workbook",
         type=Path,
-        default=Path("DataSources/Emmissions/EDGARv8.0_GHG_by substance_GWP100_AR5_NUTS2_1990_2022.xlsx"),
+        default=Path("data/raw/emissions/EDGARv8.0_GHG_by substance_GWP100_AR5_NUTS2_1990_2022.xlsx"),
         help="Path to the EDGAR workbook.",
     )
     parser.add_argument(

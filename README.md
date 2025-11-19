@@ -4,7 +4,7 @@ This repository explores links between greenhouse gas emissions and respiratory 
 
 ## Project structure
 
-- `DataSources/` – upstream datasets already downloaded (EDGAR, Climate TRACE, Eurostat health TSVs).
+- `data/raw/` – upstream datasets (EDGAR, Climate TRACE, Eurostat health TSVs, geo assets).
 - `docs/data-audit.md` – current data inventory and transformation notes.
 - `src/pipeline/` – ingestion & harmonization helpers written in Python.
 - `notebooks/` – Jupyter front-ends that call the reusable pipeline functions.
@@ -25,10 +25,10 @@ The repo ignores bulky upstream datasets. Collaborators must download the source
 
 | Dataset | Description | Download link | Expected location |
 | --- | --- | --- | --- |
-| Climate TRACE emissions (v4.8.0) | Country-level sector GHG emissions | https://climatetrace.org/downloads | `DataSources/Emmissions/Climattrace/` (preserve the `DATA/` tree) |
-| EDGAR v8.0 GHG by substance (GWP100, AR5) | NUTS2 emissions by gas & sector | https://edgar.jrc.ec.europa.eu/dataset_ghg80 | `DataSources/Emmissions/EDGARv8.0_GHG_by substance_GWP100_AR5_NUTS2_1990_2022.xlsx` |
-| Eurostat `hlth_cd_asdr2` | Age-standardised death rates | https://ec.europa.eu/eurostat/api/discover/datasets/hlth_cd_asdr2 | `DataSources/Diseases/hlth_cd_asdr2.tsv` |
-| Eurostat `hlth_co_disch1t` | Hospital discharges by diagnosis | https://ec.europa.eu/eurostat/api/discover/datasets/hlth_co_disch1t | `DataSources/Diseases/hlth_co_disch1t.tsv` |
+| Climate TRACE emissions (v4.8.0) | Country-level sector GHG emissions | https://climatetrace.org/downloads | `data/raw/emissions/Climattrace/` (preserve the `DATA/` tree) |
+| EDGAR v8.0 GHG by substance (GWP100, AR5) | NUTS2 emissions by gas & sector | https://edgar.jrc.ec.europa.eu/dataset_ghg80 | `data/raw/emissions/EDGARv8.0_GHG_by substance_GWP100_AR5_NUTS2_1990_2022.xlsx` |
+| Eurostat `hlth_cd_asdr2` | Age-standardised death rates | https://ec.europa.eu/eurostat/api/discover/datasets/hlth_cd_asdr2 | `data/raw/health/hlth_cd_asdr2.tsv` |
+| Eurostat `hlth_co_disch1t` | Hospital discharges by diagnosis | https://ec.europa.eu/eurostat/api/discover/datasets/hlth_co_disch1t | `data/raw/health/hlth_co_disch1t.tsv` |
 | NUTS 2021 GeoJSON (20 m, EPSG:4326) | Regional boundaries for the map | https://gisco-services.ec.europa.eu/distribution/v2/nuts/ | `data/raw/geo/NUTS_RG_20M_2021_4326.geojson` |
 
 > Eurostat tip: pick the “TSV (raw)” option so the ingestion scripts can stream the files without additional conversions.

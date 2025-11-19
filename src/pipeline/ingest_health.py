@@ -9,8 +9,8 @@ from typing import Optional
 
 import pandas as pd
 
-DEFAULT_CAUSES_INPUT = Path("DataSources/Diseases/hlth_cd_asdr2.tsv")
-DEFAULT_DISCHARGES_INPUT = Path("DataSources/Diseases/hlth_co_disch1t.tsv")
+DEFAULT_CAUSES_INPUT = Path("data/raw/health/hlth_cd_asdr2.tsv")
+DEFAULT_DISCHARGES_INPUT = Path("data/raw/health/hlth_co_disch1t.tsv")
 
 DEFAULT_CAUSES_OUTPUT = Path("data/processed/health_causes_of_death.parquet")
 DEFAULT_DISCHARGES_OUTPUT = Path("data/processed/health_hospital_discharges.parquet")
