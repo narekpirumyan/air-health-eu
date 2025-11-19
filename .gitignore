@@ -1,0 +1,46 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE & editor settings
+.vscode/
+.idea/
+*.code-workspace
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Coverage & test reports
+.coverage
+coverage.xml
+htmlcov/
+
+# Logs
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Large raw/external datasets
+DataSources/
+
+# Derived data artifacts
+data/raw/
+data/processed/
+data/curated/
+
+# Local application state
+app/__pycache__/
+app/*.sqlite
+
