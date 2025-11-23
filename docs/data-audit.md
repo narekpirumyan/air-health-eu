@@ -57,3 +57,13 @@
 5. Establish data quality checks: NUTS2 completeness, outlier detection, consistent units.
 
 This audit will guide the upcoming ingestion notebooks and ensures the dashboard filters (region/sector/gas/per-capita) are backed by harmonized, well-documented sources.
+
+Summary(Added by ASEEL)
+| Dataset             | Role in Project                     | DW Layer                       | Dashboard / KPI                                            |
+| ------------------- | ----------------------------------- | ------------------------------ | ---------------------------------------------------------- |
+| EDGAR GHG           | Total emissions per region & sector | fact table (emissions)         | Total CO₂-eq / sector / year, per-capita emissions, trends |
+| Climate TRACE       | Facility-level emissions            | optional fact table (detailed) | Sector deep dives, facility hotspots                       |
+| Eurostat Deaths     | Mortality due to respiratory        | fact table (health)            | Deaths per 100k, trend over years                          |
+| Eurostat Discharges | Hospitalizations                    | fact table (health)            | Admissions per 100k, composite KPI with pollution          |
+| GeoJSON             | Spatial joins                       | dim_region                     | Choropleth maps, region filters                            |
+| Population          | Normalize per-capita metrics        | dim_population                 | All per-capita KPIs                                        |
