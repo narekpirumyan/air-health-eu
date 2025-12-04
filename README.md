@@ -42,9 +42,10 @@ This repository includes:
 - **Raw data files**: EDGAR emissions, Eurostat health TSVs, population data, and geo JSON files (in `data/raw/`)
 - **Processed datasets**: All parquet files in `data/processed/` (emissions, health, population)
 - **MVP curated dataset**: `mvp/data/curated/eu_climate_health.parquet`
-- **Production database**: `prod/data/warehouse/air_health_eu.db` (SQLite star schema)
 
-**Note**: Climate TRACE data is excluded from the repository (see `.gitignore`) due to its large size. It is also not used in the current implementation, which relies on EDGAR emissions data instead.
+**Note**: 
+- Climate TRACE data is excluded from the repository (see `.gitignore`) due to its large size. It is also not used in the current implementation, which relies on EDGAR emissions data instead.
+- The Production database (`prod/data/warehouse/air_health_eu.db`) is not included due to size limitations (>100MB). It must be generated using the ETL pipeline (see `prod/README.md` for instructions).
 
 ## Getting Started
 

@@ -12,7 +12,7 @@ prod/
 ├── docs/             # Documentation for production setup
 ├── examples/         # Power BI connection examples
 ├── data/
-│   └── warehouse/    # SQLite database files (air_health_eu.db is included)
+│   └── warehouse/    # SQLite database files (air_health_eu.db - generated via ETL)
 └── README.md         # This file
 ```
 
@@ -21,8 +21,8 @@ prod/
 This production setup:
 - Uses SQLite as the data warehouse (file-based, no server needed)
 - Implements an enhanced star schema design with multiple fact tables
-- **The database (`air_health_eu.db`) is included in the repository and ready to use**
-- Provides ETL scripts to load processed parquet data into SQLite (if rebuilding)
+- **The database (`air_health_eu.db`) must be generated using the ETL pipeline (see Quick Start below)**
+- Provides ETL scripts to create and load processed parquet data into SQLite
 - Supports Power BI connections for visualization
 - Preserves the existing MVP (no changes to existing code)
 - Supports all NUTS levels (country, NUTS1, NUTS2, NUTS3+) for maximum flexibility
@@ -37,44 +37,44 @@ This production setup:
 
 ## Quick Start
 
-The database is **already created and included** in the repository. You can start using it immediately:
+**The database must be generated before use.** Follow these steps:
 
 1. **Install dependencies:**
    ```bash
    pip install -r prod/requirements-prod.txt
    ```
 
-2. **Connect Power BI:**
+2. **Ensure processed data files exist:**
+   - Run the ETL pipeline notebooks from the project root (if not already done):
+     - `notebooks/01_ingest_emissions.ipynb` → creates `data/processed/emissions_nuts2.parquet`
+     - `notebooks/01_ingest_health.ipynb` → creates `data/processed/health_*.parquet`
+     - `notebooks/02_load_population.ipynb` → creates `data/processed/population_nuts2.parquet`
+
+3. **Create the database schema:**
+   ```bash
+   python prod/etl/create_database.py
+   ```
+
+4. **Load data into the database:**
+   ```bash
+   python -m prod.etl.load_data
+   ```
+   
+   Or with NUTS2 filtering only:
+   ```bash
+   python -m prod.etl.load_data --filter-nuts2
+   ```
+
+5. **Connect Power BI:**
    - Open Power BI Desktop
    - Get Data → More → SQLite database
    - Browse to `prod/data/warehouse/air_health_eu.db`
    - Select tables and build visualizations
    - See `examples/README.md` for ready-to-use Python scripts
 
-## Rebuilding the Database (Optional)
+## Rebuilding the Database
 
-If you need to rebuild the database from scratch:
-
-1. **Ensure processed data files exist:**
-   - Run the ETL pipeline notebooks from the project root:
-     - `notebooks/01_ingest_emissions.ipynb` → creates `data/processed/emissions_nuts2.parquet`
-     - `notebooks/01_ingest_health.ipynb` → creates `data/processed/health_*.parquet`
-     - `notebooks/02_load_population.ipynb` → creates `data/processed/population_nuts2.parquet`
-
-2. **Create the database schema:**
-   ```bash
-   python prod/etl/create_database.py
-   ```
-
-3. **Load data:**
-   ```bash
-   python -m prod.etl.load_data
-   ```
-   
-   Or with NUTS2 filtering:
-   ```bash
-   python -m prod.etl.load_data --filter-nuts2
-   ```
+If you need to rebuild the database from scratch, follow the same steps as in Quick Start (steps 3-4). The ETL scripts are idempotent and will handle existing databases appropriately.
 
 ## Database Schema
 
@@ -116,20 +116,22 @@ See `sql/schema.sql` for the complete schema definition and `docs/schema-design.
 
 ## Power BI Connection
 
-The database is ready to use. See `examples/README.md` for ready-to-use Python scripts that connect Power BI to all tables and views.
+After generating the database (see Quick Start), you can connect Power BI. See `examples/README.md` for ready-to-use Python scripts that connect Power BI to all tables and views.
 
 Quick connection:
-1. Open Power BI Desktop
-2. Get Data → More → SQLite database
-3. Browse to: `prod/data/warehouse/air_health_eu.db`
-4. Select tables to import
-5. View Model to see the star schema visualization
-6. Build dashboards and visualizations
+1. Ensure the database has been generated (see Quick Start steps 3-4)
+2. Open Power BI Desktop
+3. Get Data → More → SQLite database
+4. Browse to: `prod/data/warehouse/air_health_eu.db`
+5. Select tables to import
+6. View Model to see the star schema visualization
+7. Build dashboards and visualizations
 
 ## Notes
 
-- **The database file (`air_health_eu.db`) is included in the repository** and ready to use
+- **The database file (`air_health_eu.db`) is not included in the repository** due to size limitations (>100MB). It must be generated using the ETL pipeline (see Quick Start)
 - The processed parquet files are created by the root-level `notebooks/` ETL pipeline
 - All ETL scripts are designed to be idempotent (safe to run multiple times)
-- To customize the schema, edit `sql/schema.sql` before rebuilding the database
+- To customize the schema, edit `sql/schema.sql` before creating the database
+- The generated database will be approximately 100-110 MB in size
 

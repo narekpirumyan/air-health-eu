@@ -48,7 +48,7 @@ data/processed/
 data/curated/
 
 # Production database (excluded due to size > 100MB - can be regenerated via ETL pipeline)
-prod/data/warehouse/*.db
+prod/data/warehouse/air_health_eu.db
 prod/data/warehouse/*.db-journal
 prod/data/warehouse/*.db-wal
 prod/data/warehouse/*.db-shm
