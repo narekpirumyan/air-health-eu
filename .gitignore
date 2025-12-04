@@ -1,46 +1,64 @@
-# Python artifacts
+# Python
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
-.pytest_cache/
-.ruff_cache/
-.mypy_cache/
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Virtual environments
+# Virtual Environment
 .venv/
 venv/
+ENV/
 env/
 
-# IDE & editor settings
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# IDE
 .vscode/
 .idea/
-*.code-workspace
+*.swp
+*.swo
+*~
 
-# Notebook checkpoints
-.ipynb_checkpoints/
+# Data files - exclude only Climate TRACE (large dataset), include all other raw data
+# Exclude Climate TRACE directory
+data/raw/emissions/Climattrace/
+# Include all other raw data files (EDGAR, health TSVs, population, geo)
+# Processed and curated parquet files are included in the repository
 
-# Coverage & test reports
+# Production database (temporary files only - database itself is included)
+prod/data/warehouse/*.db-journal
+prod/data/warehouse/*.db-wal
+prod/data/warehouse/*.db-shm
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/
+
+# Testing
+.pytest_cache/
 .coverage
-coverage.xml
 htmlcov/
 
 # Logs
 *.log
-
-# OS metadata
-.DS_Store
-Thumbs.db
-
-# Large raw/external datasets
-DataSources/
-
-# Derived data artifacts
-data/raw/
-data/processed/
-data/curated/
-
-# Local application state
-app/__pycache__/
-app/*.sqlite
-

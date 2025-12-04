@@ -1,0 +1,13 @@
+# Production Data Warehouse Dependencies
+# Additional requirements for SQLite data warehouse setup
+
+# Core data processing (should already be in main requirements.txt)
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Database connectivity
+# SQLite is built into Python, but SQLAlchemy is useful for advanced operations
+sqlalchemy>=2.0.0
+
+# Note: No additional drivers needed for SQLite (it's built into Python)
+

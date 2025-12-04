@@ -1,0 +1,8 @@
+pandas>=2.2.0
+openpyxl>=3.1.2
+pyarrow>=12.0.0
+eurostat>=1.1.1
+plotly>=5.24.0
+streamlit>=1.38.0
+pytest>=8.3.0
+
