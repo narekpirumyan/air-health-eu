@@ -37,7 +37,15 @@ This production setup:
 
 ## Quick Start
 
-**The database must be generated before use.** Follow these steps:
+**The database must exist before use.** You can either download it or generate it via ETL.
+
+### Option A: Download the database
+
+Download the pre-built database from [Google Drive](https://drive.google.com/file/d/17u7TVTFtPMP9IRgYbSnaUGxejxP9wDB-/view?usp=drive_link) and place it at `prod/data/warehouse/air_health_eu.db`. Then see **Power BI Connection** below to connect and use the database.
+
+### Option B: Generate the database via ETL
+
+Follow these steps:
 
 1. **Install dependencies:**
    ```bash
@@ -129,7 +137,7 @@ Quick connection:
 
 ## Notes
 
-- **The database file (`air_health_eu.db`) is not included in the repository** due to size limitations (>100MB). It must be generated using the ETL pipeline (see Quick Start)
+- **The database file (`air_health_eu.db`) is not included in the repository** due to size limitations (>100MB). You can [download it from Google Drive](https://drive.google.com/file/d/17u7TVTFtPMP9IRgYbSnaUGxejxP9wDB-/view?usp=drive_link) and place it in `prod/data/warehouse/`, or generate it using the ETL pipeline (see Quick Start)
 - The processed parquet files are created by the root-level `notebooks/` ETL pipeline
 - All ETL scripts are designed to be idempotent (safe to run multiple times)
 - To customize the schema, edit `sql/schema.sql` before creating the database

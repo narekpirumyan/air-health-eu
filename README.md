@@ -45,7 +45,7 @@ This repository includes:
 
 **Note**: 
 - Climate TRACE data is excluded from the repository (see `.gitignore`) due to its large size. It is also not used in the current implementation, which relies on EDGAR emissions data instead.
-- The Production database (`prod/data/warehouse/air_health_eu.db`) is not included due to size limitations (>100MB). It must be generated using the ETL pipeline (see `prod/README.md` for instructions).
+- The Production database (`prod/data/warehouse/air_health_eu.db`) is not included due to size limitations (>100MB). You can **download it** from [Google Drive](https://drive.google.com/file/d/17u7TVTFtPMP9IRgYbSnaUGxejxP9wDB-/view?usp=drive_link) and place it in `prod/data/warehouse/`, or generate it using the ETL pipeline (see `prod/README.md` for instructions).
 
 ## Getting Started
 
